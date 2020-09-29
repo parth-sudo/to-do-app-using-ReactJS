@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Footer from "./components/Footer"
+import Main from "./components/Main"
+import Header from "./components/Header"
+import Todo from "./components/Todo"
+import Joke from "./components/Joke"
+import toDoData from "./toDoData"
+import Greeting from "./components/Greeting"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component
+{
+  constructor()
+  {
+    super()
+    this.state = {
+      todos : toDoData
+    }
+  }
+  render()
+  {
+
+    const todoItems = this.state.todos.map(item => { // passing array of objects.s
+    
+        return (
+          <Todo key = {item.id} item = {item}/>
+        )
+    })
+    
+      return (
+         <div>  
+         
+        <Greeting/>
+    
+        <Header/>
+         
+         {todoItems}
+    
+         <Footer/>
+      
+         </div>
+    
+      )
+
+  }
 }
 
 export default App;
